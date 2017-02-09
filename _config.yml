@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en"
-title                    : "bit, byte, bitten"
+title                    : "Bit, Byte, Bitten"
 title_separator          : "-"
 name                     : "Juanlu"
 description              : "Yet another geeky blog"
@@ -111,6 +111,7 @@ author:
 include:
   - .htaccess
   - _pages
+  - _shortened
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
