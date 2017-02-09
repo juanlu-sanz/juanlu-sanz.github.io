@@ -7,13 +7,13 @@
 
 # Site Settings
 locale                   : "en"
-title                    : "juanlu.is"
+title                    : "bit, byte, bitten"
 title_separator          : "-"
 name                     : "Juanlu"
-description              : "Wait, what?"
+description              : "Yet another geeky blog"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "juanlu-sanz/juanlu-sanz.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
@@ -55,7 +55,7 @@ yandex_site_verification :
 
 # Social Sharing
 twitter:
-  username               :
+  username               : "juanlu_sanz"
 facebook:
   username               :
   app_id                 :
@@ -70,16 +70,16 @@ social:
 
 # Analytics
 analytics:
-  provider               : false # false (default), "google", "google-universal", "custom"
+  provider               : "google"
   google:
-    tracking_id          :
+    tracking_id          : "UA-44584344-1"
 
 
 # Site Author
 author:
-  name             : "Your Name"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an amazing person."
+  name             : "Juanlu"
+  avatar           : "https://pbs.twimg.com/profile_images/829646913100214273/p7OGTcEW.jpg"
+  bio              : "Honestly? I just needed a place to write notes for future me."
   location         : "Somewhere"
   email            :
   uri              :
@@ -89,18 +89,18 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           :
+  github           : "juanlu-sanz"
   google_plus      :
   keybase          :
   instagram        :
   lastfm           :
-  linkedin         :
+  linkedin         : "juanluissanz"
   pinterest        :
   soundcloud       :
-  stackoverflow    : # "123456/username" (the last part of your profile url, e.g. http://stackoverflow.com/users/123456/username)
+  stackoverflow    : "1197418/juanlu"
   steam            :
   tumblr           :
-  twitter          :
+  twitter          : "juanlu_sanz"
   vine             :
   weibo            :
   xing             :
@@ -244,3 +244,10 @@ defaults:
       comments: # true
       share: true
       related: true
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
