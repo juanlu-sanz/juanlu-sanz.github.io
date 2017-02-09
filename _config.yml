@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "bit, byte, bitten"
+title                    : "Bit, Byte, Bitten"
 title_separator          : "-"
 name                     : "Juanlu"
 description              : "Yet another geeky blog"
@@ -153,6 +153,7 @@ footer:
 include:
   - .htaccess
   - _pages
+  - _shortened
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
