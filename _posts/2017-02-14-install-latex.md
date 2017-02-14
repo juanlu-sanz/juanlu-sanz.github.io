@@ -18,11 +18,12 @@ First install the TeX *engine*, I use [MiKTeX](https://miktex.org/download), the
 ### Online
 
 There are several online editors you can use, but by far the most complete is [Overleaf](https://www.overleaf.com/)
- * Real-time collaboration in your browser
- * Sharing
- * Real-time Preview
- * Rich Text Mode
- * Templates (Papers, slides, CVs&hellip;)
+
+  * Real-time collaboration in your browser
+  * Sharing
+  * Real-time Preview
+  * Rich Text Mode
+  * Templates (Papers, slides, CVs&hellip;)
 
 
 ### iPad &amp; OSX
