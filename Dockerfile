@@ -8,7 +8,7 @@ RUN apk update
 RUN apk add git --no-cache
 RUN apk add nginx --no-cache
 RUN apk add openrc --no-cache
-RUN git clone https://github.com/juanlu-sanz/juanlu-sanz.github.io.git repo && \
+RUN git clone -b synced https://github.com/juanlu-sanz/juanlu-sanz.github.io.git repo && \
     cd repo && \
     git pull origin master && \
     echo ${DATE}
@@ -20,12 +20,6 @@ RUN mkdir /www /nginxconfigs && \
     adduser -D -g 'www' www && \
     chown -R www:www /var/lib/nginx && \
     chown -R www:www /www
-
-ARG BUILDVAR=sad 
-RUN if [ "$BUILDVAR" == "SO"]; \
-    then export SOMEVAR=hello; \
-    else export SOMEVAR=world; \
-    fi 
 
 RUN bundle exec jekyll build --destination /www
 

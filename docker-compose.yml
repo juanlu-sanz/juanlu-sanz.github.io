@@ -11,3 +11,6 @@ services:
     ports:
       - 4000:4000
     command: jekyll serve --host 0.0.0.0 --source /repo --watch --incremental 
+
+
+#docker-compose down; docker-compose build; docker-compose up blog
