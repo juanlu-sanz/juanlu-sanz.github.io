@@ -21,6 +21,12 @@ RUN mkdir /www /nginxconfigs && \
     chown -R www:www /var/lib/nginx && \
     chown -R www:www /www
 
+ARG BUILDVAR=sad 
+RUN if [ "$BUILDVAR" == "SO"]; \
+    then export SOMEVAR=hello; \
+    else export SOMEVAR=world; \
+    fi 
+
 RUN bundle exec jekyll build --destination /www
 
 EXPOSE 80:8008
@@ -29,8 +35,9 @@ WORKDIR /nginxconfigs
 RUN mkdir logs && touch access.log
 COPY ./configs/nginx.conf /nginxconfigs
 COPY ./configs/mime.types /nginxconfigs
-CMD nginx -p . -c /nginxconfigs/nginx.conf
-
+RUN touch /repo/.jekyll-metadata
+RUN chown -R jekyll /repo
+#CMD nginx -p . -c /nginxconfigs/nginx.conf
 
 # $a = Get-Date; docker build --build-arg DATE=$a -t juanlu.is:0.1 .
 

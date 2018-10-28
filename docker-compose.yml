@@ -5,3 +5,9 @@ services:
     build: .
     ports:
       - 80:8008
+    command: nginx -p /nginxconfigs -c /nginxconfigs/nginx.conf
+  blog-dev:
+    build: .
+    ports:
+      - 4000:4000
+    command: jekyll serve --host 0.0.0.0 --source /repo --watch --incremental 
