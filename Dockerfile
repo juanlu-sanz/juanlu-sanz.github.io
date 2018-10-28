@@ -1,4 +1,4 @@
-FROM jekyll/jekyll:3.8.2
+FROM jekyll/jekyll:3.3.1
 
 ARG DATE
 ARG BRANCH=synced
@@ -9,23 +9,28 @@ RUN apk update
 RUN apk add git --no-cache
 RUN apk add nginx --no-cache
 RUN apk add openrc --no-cache
-RUN git clone https://github.com/juanlu-sanz/juanlu-sanz.github.io.git repo && \
-    cd repo && \
-    git checkout ${BRANCH} && \
-    git pull origin ${BRANCH} && \
-    echo ${DATE}
+#RUN git clone https://github.com/juanlu-sanz/juanlu-sanz.github.io.git repo && \
+#    cd repo && \
+#    git checkout ${BRANCH} && \
+#    git pull origin ${BRANCH} && \
+#    echo ${DATE}
+RUN mkdir /repo
+COPY ./ /repo/
 
 WORKDIR /repo
 
 RUN chown -R jekyll /repo
 
-RUN bundle
 RUN mkdir /www /nginxconfigs && \
     adduser -D -g 'www' www && \
     chown -R www:www /var/lib/nginx && \
     chown -R www:www /www
 
-#RUN cat _config.yml
+
+RUN bundle
+RUN bundle install
+RUN jekyll -v
+RUN ls -lah /repo
 
 RUN bundle exec jekyll build --destination /www
 
