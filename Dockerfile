@@ -1,6 +1,7 @@
-FROM jekyll/jekyll:3.3.1
+FROM jekyll/jekyll:3.8
 
 ARG DATE
+ARG BRANCH=synced
 
 WORKDIR /
 
@@ -8,12 +9,15 @@ RUN apk update
 RUN apk add git --no-cache
 RUN apk add nginx --no-cache
 RUN apk add openrc --no-cache
-RUN git clone -b synced https://github.com/juanlu-sanz/juanlu-sanz.github.io.git repo && \
+RUN git clone https://github.com/juanlu-sanz/juanlu-sanz.github.io.git repo && \
     cd repo && \
-    git pull origin master && \
+    git checkout ${BRANCH} && \
+    git pull origin ${BRANCH} && \
     echo ${DATE}
 
 WORKDIR /repo
+
+RUN chown -R jekyll /repo
 
 RUN bundle
 RUN mkdir /www /nginxconfigs && \
@@ -31,8 +35,3 @@ COPY ./configs/nginx.conf /nginxconfigs
 COPY ./configs/mime.types /nginxconfigs
 RUN touch /repo/.jekyll-metadata
 RUN chown -R jekyll /repo
-#CMD nginx -p . -c /nginxconfigs/nginx.conf
-
-# $a = Get-Date; docker build --build-arg DATE=$a -t juanlu.is:0.1 .
-
-# docker run juanlu.is:0.1
