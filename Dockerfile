@@ -1,4 +1,4 @@
-FROM jekyll/jekyll:3.8
+FROM jekyll/jekyll:3.8.2
 
 ARG DATE
 ARG BRANCH=synced
@@ -24,6 +24,8 @@ RUN mkdir /www /nginxconfigs && \
     adduser -D -g 'www' www && \
     chown -R www:www /var/lib/nginx && \
     chown -R www:www /www
+
+#RUN cat _config.yml
 
 RUN bundle exec jekyll build --destination /www
 
