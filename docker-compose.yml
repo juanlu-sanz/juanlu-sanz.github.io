@@ -3,6 +3,7 @@ version: '3'
 services:
   blog:
     build: .
+    image: blog:0.5
     expose:
       - '8008'
     environment:
