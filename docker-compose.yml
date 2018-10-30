@@ -1,19 +1,34 @@
-version: '3'
+version: '3.2'
 
 services:
   blog:
     build: .
-    image: blog:0.5
+    container_name: blog
     expose:
-      - '8008'
+      - 8008
     environment:
-      - VIRTUAL_HOST=juanlu.is
+      #VIRTUAL_HOST: my-app.local
+      VIRTUAL_HOST: juanlu.is
+      VIRTUAL_PORT: 8008
+
     command: nginx -p /nginxconfigs -c /nginxconfigs/nginx.conf
   blog-dev:
     build: .
     ports:
       - 4000:4000
+    volumes:
+      - type: bind
+        source: './_posts'
+        target: '/repo/_posts'
+        bind:
+          propagation: rslave
+
+      #- './_posts:/repo/_posts'
+      #- './_assets/images:/repo/_assets/images'
     command: jekyll serve --host 0.0.0.0 --source /repo --watch --incremental 
 
 
-#docker-compose down; docker-compose build; docker-compose up blog
+    networks:
+  default:
+    external:
+      name: nginx-proxy
