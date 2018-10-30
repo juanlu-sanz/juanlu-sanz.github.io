@@ -28,7 +28,7 @@ services:
     command: jekyll serve --host 0.0.0.0 --source /repo --watch --incremental 
 
 
-    networks:
+networks:
   default:
     external:
       name: nginx-proxy
