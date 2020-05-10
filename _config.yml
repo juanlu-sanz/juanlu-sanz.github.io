@@ -101,7 +101,7 @@ analytics:
 # Site Author
 author:
   name             : "Juanlu"
-  avatar           : "https://pbs.twimg.com/profile_images/841350356546277376/0i9Y4S2P.jpg"
+  avatar           : "./assets/images/helicopter.png"
   bio              : "Honestly? I just needed a place to write notes for future me."
   location         : "Somewhere"
   email            :

@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  blog:
+    build:
+      context: ../
+      dockerfile: ./env/Dockerfile
+    container_name: bloga
+    labels:
+      # SSL redirect requires a separate router (https://github.com/containous/traefik/issues/4688#issuecomment-477800500)
+      - "traefik.http.routers.blog.entryPoints=port80"
+      - "traefik.http.routers.blog.rule=host(`juanlu.is`)"
+      - "traefik.http.middlewares.blog-redirect.redirectScheme.scheme=https"
+      - "traefik.http.middlewares.blog-redirect.redirectScheme.permanent=true"
+      - "traefik.http.routers.blog.middlewares=blog-redirect"
+      # SSL endpoint
+      - "traefik.http.routers.blog-ssl.entryPoints=port443"
+      - "traefik.http.routers.blog-ssl.rule=host(`juanlu.is`)"
+      - "traefik.http.routers.blog-ssl.tls=true"
+      - "traefik.http.routers.blog-ssl.tls.certResolver=le-ssl"
+      - "traefik.http.routers.blog-ssl.service=blog-ssl"
+      - "traefik.http.services.blog-ssl.loadBalancer.server.port=8008"
+    command: nginx -p /nginxconfigs -c /nginxconfigs/nginx.conf
+    
+  # blog-dev:
+  #   build: .
+  #   ports:
+  #     - 4000:4000
+  #   volumes:
+  #     - type: bind
+  #       source: './_posts'
+  #       target: '/repo/_posts'
+  #       bind:
+  #         propagation: rslave
+
+  #     #- './_posts:/repo/_posts'
+  #     #- './_assets/images:/repo/_assets/images'
+  #   command: jekyll serve --host 0.0.0.0 --source /repo --watch --incremental 
+
+volumes:
+  traefik-data:
