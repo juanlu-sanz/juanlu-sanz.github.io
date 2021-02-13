@@ -1,4 +1,4 @@
-FROM jekyll/jekyll:3.3.1
+FROM jekyll/jekyll:4.2.0
 
 #Arguments
 ARG DATE
@@ -40,9 +40,14 @@ RUN mkdir /www /nginxconfigs && \
 RUN bundle && \
     bundle install
 
+RUN chown -R jekyll /www
+
 #Convert jekyll files into static html content
 RUN bundle exec jekyll build --destination /www
 
+
+# RUN chown -R www:www /var/lib/nginx && \
+#     chown -R www:www /www
 #EXPOSE 80:8008
 
 WORKDIR /nginxconfigs
